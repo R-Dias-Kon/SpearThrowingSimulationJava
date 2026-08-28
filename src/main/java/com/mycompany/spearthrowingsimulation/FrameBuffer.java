@@ -44,8 +44,11 @@ public class FrameBuffer {
     
     public void drawAll(char symbol){
         for (int i = 0; i < this.buffer.length; ++i) {
-            if (i+1 % this.columns+1 != 0) {
+            if ((i+1) % (this.columns+1) != 0) {
                 this.buffer[i] = symbol;
+            }
+            else {
+                this.buffer[i] = '\n';
             }
         }
     }

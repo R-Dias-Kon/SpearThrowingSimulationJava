@@ -34,10 +34,10 @@ public class Renderer {
         this.framebuffer = new FrameBuffer(columns, lines);
         this.floorMarkingsGap = floorMarkingsGap;
         
-        this.skySymbol = ':';
+        this.skySymbol = ' ';
         this.floorSymbol = '"';
         this.floorMarkingsSymbol = '*';
-        this.emptySymbol = '.';
+        this.emptySymbol = ' ';
     }
 
     public void setSkySymbol(char skySymbol) {

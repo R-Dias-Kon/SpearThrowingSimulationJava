@@ -16,15 +16,14 @@ public class Program {
     private Renderer renderer;
     private int framerate;
     private Scanner scanner;
-    private JFrame frame;
-    private JLabel renderOutputLabel;
+    private ProgramGUI gui;
 
     public Program(int framerate) {
         this.framerate = framerate;
         this.simulation = new Simulation(new Vec2(0, -9.81f), 1.225f);
-        this.renderer = new Renderer(200, 40, 10);
+        this.renderer = new Renderer(150, 20, 15);
         this.scanner = new Scanner(System.in);
-        this.frame = null;
+        this.gui = null;
     }
     
     public void inputInitialAngle() {
@@ -49,20 +48,15 @@ public class Program {
     }
     
     public void createFrame(int frameWidth, int frameHeight) {
-        this.frame = new JFrame();
-        this.frame.setSize(frameWidth, frameHeight);
-        this.frame.setLayout(null);
-        this.frame.setVisible(true);
-        this.renderOutputLabel = new JLabel();
-        this.frame.add(this.renderOutputLabel);
+        this.gui = new ProgramGUI();
+        this.gui.setVisible(true);
     }
     
     public void displayRender() {
-        if (this.frame == null) return;
+        //if (this.gui == null) return;
         
         this.render();
-        String frameOutput = this.renderer.getFrameAsString();
-        this.renderOutputLabel.setText(frameOutput);
-        this.frame.update(this.frame.getGraphics());
+        char[] frameOutput = this.renderer.getFrame();
+        System.out.print(frameOutput);
     }
 }
