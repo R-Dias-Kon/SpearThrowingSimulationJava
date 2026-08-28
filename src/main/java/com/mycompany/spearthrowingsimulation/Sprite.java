@@ -4,33 +4,46 @@
  */
 package com.mycompany.spearthrowingsimulation;
 
+import static java.lang.Math.PI;
+
 /**
- *
+ * Class that stores a collection of symbols representing an object at angles
+ * 0 inclusive to 2*PI exclusive.
  * @author konriato
  */
 public class Sprite {
     private char[] symbols;
     
-    char getSymbolByRadians(float angle) {
-        
+    public Sprite(char[] symbols) throws EmptySymbolsArrayException {
+        this.symbols = symbols;
+        if (symbols.length <= 0) {
+            throw new EmptySymbolsArrayException();
+        }
+    }
+    
+    char getSymbolByRadians(float angleInRadians) {
+        while (angleInRadians < 0) {
+            angleInRadians += 2*PI;
+        }
+        int index = (int) Math.round(angleInRadians/(2*PI) * this.symbols.length);
+        return this.symbols[index];
     }
     
     char[] getSymbols() {
         return this.symbols;
     }
     
-    void setSymbols(char[] symbols) throws EmptySymbolArrayException {
+    void setSymbols(char[] symbols) throws EmptySymbolsArrayException {
         if (symbols.length > 0) {
             this.symbols = symbols;
         }
         else {
-            throw new EmptySymbolArrayException();
+            throw new EmptySymbolsArrayException();
         }
     }
 
-    private static class EmptySymbolArrayException extends Exception {
-
-        public EmptySymbolArrayException() {
+    public static class EmptySymbolsArrayException extends Exception {
+        public EmptySymbolsArrayException() {
         }
     }
 }

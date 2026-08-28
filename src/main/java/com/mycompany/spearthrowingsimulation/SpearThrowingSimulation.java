@@ -11,6 +11,10 @@ package com.mycompany.spearthrowingsimulation;
 public class SpearThrowingSimulation {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Program program = new Program(30);
+        program.createFrame(1280, 720);
+        program.inputInitialAngle();
+        program.inputInitialVelocity();
+        program.displayRender();
     }
 }
