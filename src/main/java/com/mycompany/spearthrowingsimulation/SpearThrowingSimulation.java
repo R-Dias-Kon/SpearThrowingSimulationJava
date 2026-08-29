@@ -11,10 +11,15 @@ package com.mycompany.spearthrowingsimulation;
 public class SpearThrowingSimulation {
 
     public static void main(String[] args) {
-        Program program = new Program(30);
-        //program.createFrame(1280, 720);
+        Program program = new Program( 60 );
         program.inputInitialAngle();
         program.inputInitialVelocity();
-        program.displayRender();
+        try {
+            program.simulate();
+        }
+        catch (Exception e) {
+            System.out.println("execucao interrompida");
+            e.printStackTrace();
+        }
     }
 }

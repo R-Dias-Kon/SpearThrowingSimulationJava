@@ -28,6 +28,8 @@ public class Simulation {
     public void update(float deltaTime) {
         Vec2[] forces = {this.gravity, this.getDragForce(spear)};
         this.spear.updateVelAndPos(forces, deltaTime);
+        if (this.spear.pos.x < 0) this.spear.pos.x = 0;
+        if (this.spear.pos.y < 0) this.spear.pos.y = 0;
     }
     
     public float getSpearPosX() {
@@ -49,6 +51,8 @@ public class Simulation {
     
     public void setSpearAngle(float angleInRadians) {
         float velocity = this.spear.vel.length();
+        if (velocity == 0)
+            velocity = 1;
         this.spear.vel.x = (float) Math.cos(angleInRadians);
         this.spear.vel.y = (float) Math.sin(angleInRadians);
         this.spear.vel.mult(velocity);

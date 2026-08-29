@@ -25,7 +25,7 @@ public class Sprite {
         while (angleInRadians < 0) {
             angleInRadians += 2*PI;
         }
-        int index = (int) Math.round(angleInRadians/(2*PI) * this.symbols.length);
+        int index = (int) (angleInRadians/(2*PI) * this.symbols.length);
         return this.symbols[index];
     }
     

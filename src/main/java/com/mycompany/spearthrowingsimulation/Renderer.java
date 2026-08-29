@@ -95,14 +95,15 @@ public class Renderer {
     
     private void renderSpear(float localX, float localY, char symbol) {
         if (localX > this.columns - 1 || localX < 0) return;
-        if (localY > this.lines - 1 || localY < 0) return;
+        if (localY > this.lines - 3 || localY < 0) return;
+        localY = (this.lines-3) - localY;
         this.framebuffer.draw(Math.round(localY), Math.round(localX), symbol);
         //this.framebuffer[(int) localY][(int) localX] = symbol;
     }
     
     private void renderFloorMarkings(float x) {
         int offset = ((int) x) % this.floorMarkingsGap;
-        int i = offset;
+        int i = this.floorMarkingsGap - offset;
         while (i < this.columns - 1) {
             this.framebuffer.draw(this.lines - 1, i, this.floorMarkingsSymbol);
             i += this.floorMarkingsGap;
